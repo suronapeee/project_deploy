@@ -32,8 +32,8 @@ SECRET_KEY = env.str("SECRET_KEY") # new
 DEBUG = env.bool("DEBUG", default=False)
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["http://13.229.131.30/", "localhost", "127.0.0.1"]  # new
-CSRF_TRUSTED_ORIGINS = ["http://13.229.131.30/"]  # new
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]  # new
+#CSRF_TRUSTED_ORIGINS = ["http://13.229.131.30/"]  # new
 
 # Application definition
 INSTALLED_APPS = [
