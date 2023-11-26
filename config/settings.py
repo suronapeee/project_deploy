@@ -33,7 +33,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]  # new
-#CSRF_TRUSTED_ORIGINS = ["http://13.229.131.30/"]  # new
+CSRF_TRUSTED_ORIGINS = [".herokuapp.com"]  # new
 
 # Application definition
 INSTALLED_APPS = [
