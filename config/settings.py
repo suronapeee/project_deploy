@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config # new
+from environs import Env  # new
 
-#from environs import Env  # new
-
-#env = Env()  # new
-#env.read_env()  # new
+env = Env()  # new
+env.read_env()  # new
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,16 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = env.str("SECRET_KEY") # new
-SECRET_KEY = 'django-insecure-rcw_e**h+7pejj#gf*+qw6%0@%41vk&2y(93bhev3((0el#gr*'
+SECRET_KEY = env.str("SECRET_KEY") # new
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = env.bool("DEBUG", default=False)
+# DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["dfb-ch17-news.fly.dev", "localhost", "127.0.0.1"]  # new
-CSRF_TRUSTED_ORIGINS = ["https://dfb-ch17-news.fly.dev"]  # new
+ALLOWED_HOSTS = ["http://13.229.131.30/", "localhost", "127.0.0.1"]  # new
+CSRF_TRUSTED_ORIGINS = ["http://13.229.131.30/"]  # new
 
 # Application definition
 INSTALLED_APPS = [
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #"whitenoise.runserver_nostatic",  # new
+    "whitenoise.runserver_nostatic",  # new
     'django.contrib.staticfiles',
     # 3rd Party
     "crispy_forms",
@@ -56,7 +55,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    #"whitenoise.middleware.WhiteNoiseMiddleware",  # new
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # new
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,20 +87,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'news', # your_postgresql_db_name
+#        'USER': 'postgres', # your_postgresql_username
+#        'PASSWORD': '12345678', # your_postgresql_password
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
+
+
 DATABASES = {
-    #"default": env.dj_db_url("DATABASE_URL", default="sqlite:///db.sqlite3"),
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-    #}
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'news', # your_postgresql_db_name
-        'USER': 'postgres', # your_postgresql_username
-        'PASSWORD': 'Peng8602', # your_postgresql_password
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': config('DATABASE_URL', default='sqlite:///db.sqlite3', cast=str),
 }
 
 # Password validation
@@ -141,7 +140,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]  # new
 STATIC_ROOT = BASE_DIR / "staticfiles"  # new
-#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # new
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # new
 
 AUTH_USER_MODEL = 'accounts.CustomUser' # new
 
