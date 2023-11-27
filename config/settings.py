@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",  # new
     'django.contrib.staticfiles',
-    # 3rd Party
     "crispy_forms",
     "crispy_bootstrap5",
     'pages', 
