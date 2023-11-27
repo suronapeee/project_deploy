@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config # new
 from environs import Env  # new
 
 env = Env()  # new
@@ -86,19 +85,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'news', # your_postgresql_db_name
-#        'USER': 'postgres', # your_postgresql_username
-#        'PASSWORD': '12345678', # your_postgresql_password
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
-
-
 DATABASES = {
     'default': env.dj_db_url("DATABASE_URL", default="sqlite:///db.sqlite3"),
 }
