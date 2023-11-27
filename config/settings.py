@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 DATABASES = {
-    'default': config('DATABASE_URL', default='sqlite:///db.sqlite3', cast=str),
+    'default': env.dj_db_url("DATABASE_URL", default="sqlite:///db.sqlite3"),
 }
 
 # Password validation
